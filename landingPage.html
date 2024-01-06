@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HP Victus Laptop</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f5f5f5; /* Light grey background */
+            color: #333; /* Dark grey text color */
+        }
+
+        header {
+            background-color: #007BFF; /* Blue header background */
+            color: #fff; /* White text color */
+            padding: 20px;
+            text-align: center;
+            position: relative; /* Position relative for discount sale text */
+        }
+
+        /* Additional styling for the moving discount sale text */
+        .discount-sale {
+            position: relative;
+            background-color: #d9534f;
+            color: #ffffff;
+            padding: 10px;
+            overflow: hidden;
+            width: 100%;
+            z-index: 999; /* Set a higher z-index */
+        }
+
+
+        .discount-text {
+            position: absolute;
+            font-size: 24px;
+            animation: moveSale 5s linear infinite alternate;
+            white-space: nowrap; /* Ensure the text doesn't wrap to the next line */
+            left: 0; /* Initialize the left position to 0 */
+        }
+
+        @keyframes moveSale {
+            0% {
+                left: 100%;
+            }
+            50% {
+                left: 0;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        section {
+            background-color: #fff;
+            padding: 60px;
+            margin: 60px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Ensure rounded corners are applied */
+            display: flex;
+            align-items: center; /* Center content vertically */
+        }
+
+        .laptop-container {
+            flex: 1; /* Take remaining space in the container */
+            margin-right: 20px;
+        }
+
+        .laptop-image {
+            width: 100%; /* Make the image take the full width of its container */
+            max-width: 100%; /* Ensure it doesn't exceed its original size */
+            border-radius: 10px;
+        }
+
+        .text-container {
+            flex: 1; /* Take remaining space in the container */
+        }
+
+        .price {
+            font-size: 24px;
+            color: #28A745; /* Green color for price */
+            margin-bottom: 10px;
+        }
+
+        .rating {
+            color: #FFD700; /* Gold color for stars */
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333; /* Dark grey text color */
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #007BFF;
+            color: #fff;
+            margin-right: 10px;
+        }
+
+        .btn-secondary {
+            background-color: #28A745;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 style="margin: 0;">HP Victus Laptop</h1>
+    </header>
+
+    <!-- Moving discount sale text in a separate block -->
+    <div class="discount-sale">
+        <p class="discount-text">50% Discount Sale!</p>
+    </div>
+
+    <section>
+        <div class="laptop-container">
+            <img class="laptop-image" src="C:/Users/astey/Pictures/Screenshots/laptop_image.png" alt="HP Victus Laptop">
+        </div>
+        <div class="text-container">
+            <h2>Welcome to the HP Victus Laptop Page</h2>
+            <p>
+                The HP Victus laptop combines cutting-edge technology with sleek design, offering a powerful and stylish computing experience. Whether you're a professional, student, or casual user, the HP Victus is designed to meet your needs.
+            </p>
+
+            <h3>Key Features:</h3>
+            <ul>
+                <li>Powerful processor for smooth performance</li>
+                <li>High-resolution display for vibrant visuals</li>
+                <li>144Hz Refresh Rate</li>
+                <li>Long-lasting battery life</li>
+                <li>With RTX 3050, Gaming Enhanced!</li>
+            </ul>
+
+            <div class="price">  ₹69,999/-</div>
+            <div class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+
+            <a href="#" class="btn btn-primary">Add to Cart</a>
+            <a href="#" class="btn btn-secondary">Buy Now</a>
+        </div>
+    </section>
+
+    <!-- (remaining content remains unchanged) -->
+
+    <footer>
+        <p style="margin: 0;">&copy; 2024 HP Victus. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
