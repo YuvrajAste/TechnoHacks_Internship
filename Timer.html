@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fun Focus Timer</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #ff758c, #ff7eb3); /* Gradient background */
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+
+    #screen-container {
+      background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 30px;
+      text-align: center;
+      color: #fff;
+      animation: fadeIn 1s;
+    }
+
+    #timer {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+
+    #set-timer-container {
+      background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      margin-bottom: 20px;
+      animation: fadeInUp 1s;
+    }
+
+    #set-timer-label { /* Added style rule for the label */
+      color: black;
+      font-size: 1em;
+      margin-right: 40px; /* Option for spacing between buttons */
+      margin-bottom: 10px;
+    }
+
+    #controls {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px; /* Added more space between buttons */
+    }
+
+    button {
+      font-size: 1em;
+      padding: 10px 20px;
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      transition: background-color 0.3s;
+    }
+
+    #start {
+      background-color: #4CAF50; /* Green */
+      color: white;
+    }
+
+    #stop {
+      background-color: #FF0000; /* Red */
+      color: white;
+    }
+
+    #reset {
+      background-color: #0000FF; /* Blue */
+      color: white;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div id="screen-container">
+  <div id="timer">25:00</div>
+</div>
+
+<div id="set-timer-container">
+  <label id="set-timer-label" for="duration">Set Timer (in minutes): </label>
+  <input type="number" id="duration" min="1" value="25">
+</div>
+
+<div id="controls">
+  <button id="start" onclick="startTimer()">Start</button>
+  <button id="stop" onclick="stopTimer()">Stop</button>
+  <button id="reset" onclick="resetTimer()">Reset</button>
+</div>
+
+<script>
+  let timer;
+  let timeInSeconds = 25 * 60; // Default time in seconds
+
+  function startTimer() {
+    stopTimer(); // Stop the current timer if any
+    timeInSeconds = parseInt(document.getElementById('duration').value, 10) * 60 || 0; // Get the user-set time in minutes
+    timer = setInterval(updateTimer, 1000);
+    updateTimer(); // Call the function immediately to avoid a 1-second delay
+  }
+
+  function stopTimer() {
+    clearInterval(timer);
+  }
+
+  function resetTimer() {
+    stopTimer();
+    timeInSeconds = parseInt(document.getElementById('duration').value, 10) * 60 || 0; // Reset to the user-set time
+    updateTimer();
+  }
+
+  function updateTimer() {
+    const minutes = Math.floor(timeInSeconds / 60);
+    const seconds = timeInSeconds % 60;
+
+    const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    document.getElementById('timer').textContent = formattedTime;
+
+    if (timeInSeconds > 0) {
+      timeInSeconds--;
+    } else {
+      stopTimer();
+      alert("Time's up!");
+    }
+  }
+</script>
+
+</body>
+</html>
