@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #4CAF50, #3498db);
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        #currency-symbols {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('currency-symbols.png'); /* Replace with the path to your currency symbols image */
+            background-size: cover;
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        #container {
+            max-width: 400px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        select,
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #fff;
+            color: #3498db;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        button:hover {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        #result {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        @keyframes highlight {
+            0% {
+                background-color: #3498db;
+                color: #fff;
+            }
+
+            100% {
+                background-color: #fff;
+                color: #3498db;
+            }
+        }
+
+        .highlight {
+            animation: highlight 1s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="currency-symbols"></div>
+    <div id="container">
+        <h2>Currency Converter</h2>
+        <select id="fromCurrency">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="INR">INR</option>
+            <option value="CNY">CNY</option>
+            <option value="RUB">RUB</option>
+            <option value="TRY">TRY</option>
+            <!-- Add more currency options as needed -->
+        </select>
+        <input type="number" id="amount" placeholder="Enter amount">
+        <select id="toCurrency">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="INR">INR</option>
+            <option value="CNY">CNY</option>
+            <option value="RUB">RUB</option>
+            <option value="TRY">TRY</option>
+            <!-- Add more currency options as needed -->
+        </select>
+        <button onclick="convertCurrency()">Convert</button>
+        <button onclick="resetForm()">Reset</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function convertCurrency() {
+            var fromCurrency = document.getElementById("fromCurrency").value;
+            var toCurrency = document.getElementById("toCurrency").value;
+            var amount = document.getElementById("amount").value;
+
+            // Fetch real-time exchange rates from an API for accurate conversion
+            // For simplicity, let's assume a fixed conversion rate for this example
+            var exchangeRates = {
+                USD: 1,
+                EUR: 0.85, // 1 USD to EUR
+                GBP: 0.73, // 1 USD to GBP
+                INR: 74.31, // 1 USD to INR
+                CNY: 6.37, // 1 USD to CNY
+                RUB: 73.34, // 1 USD to RUB
+                TRY: 13.13, // 1 USD to TRY
+            };
+
+            var conversionRate = exchangeRates[toCurrency] / exchangeRates[fromCurrency];
+            var result = amount * conversionRate;
+
+            document.getElementById("result").innerHTML = amount + " " + fromCurrency + " = " + result.toFixed(2) + " " + toCurrency;
+
+            // Add animation class to highlight the result
+            document.getElementById("result").classList.add("highlight");
+
+            // Remove animation class after 1 second
+            setTimeout(function () {
+                document.getElementById("result").classList.remove("highlight");
+            }, 1000);
+        }
+
+        function resetForm() {
+            document.getElementById("fromCurrency").value = "USD";
+            document.getElementById("toCurrency").value = "USD";
+            document.getElementById("amount").value = "";
+            document.getElementById("result").innerHTML = "";
+        }
+    </script>
+</body>
+
+</html>
